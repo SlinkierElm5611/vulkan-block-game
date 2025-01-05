@@ -67,6 +67,16 @@ private:
         createInfo.queueCreateInfoCount = 1;
         createInfo.pQueueCreateInfos = &queueCreateInfo;
         createInfo.pEnabledFeatures = &deviceFeatures;
+        std::vector<const char*> deviceExtensions = {VK_KHR_SWAPCHAIN_EXTENSION_NAME};
+        std::vector<vk::ExtensionProperties> availableExtensions = m_physicalDevice.enumerateDeviceExtensionProperties();
+        std::string portabilityExtension = "VK_KHR_portability_subset";
+        for(vk::ExtensionProperties extension : availableExtensions){
+            if(std::string(extension.extensionName) == portabilityExtension){
+                deviceExtensions.push_back(portabilityExtension.c_str());
+            }
+        }
+        createInfo.enabledExtensionCount = static_cast<uint32_t>(deviceExtensions.size());
+        createInfo.ppEnabledExtensionNames = deviceExtensions.data();
         m_device = m_physicalDevice.createDevice(createInfo);
         m_queue = m_device.getQueue(0, 0);
     }
