@@ -15,7 +15,7 @@ private:
     vk::Extent2D m_swapChainExtent;
     std::vector<vk::ImageView> m_swapChainImageViews;
     void createInstance() {
-        vk::ApplicationInfo appInfo("Hello Triangle", VK_MAKE_VERSION(1, 0, 0), "No Engine", VK_MAKE_VERSION(1, 0, 0), VK_API_VERSION_1_2);
+        vk::ApplicationInfo appInfo("Vulkan Block Game", VK_MAKE_VERSION(1, 0, 0), "No Engine", VK_MAKE_VERSION(1, 0, 0), VK_API_VERSION_1_2);
         vk::InstanceCreateInfo createInfo;
         createInfo.pApplicationInfo = &appInfo;
         std::vector<const char*> extensions = {VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME};
