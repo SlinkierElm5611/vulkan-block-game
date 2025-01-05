@@ -30,6 +30,7 @@ private:
         std::vector<const char*> layers = {"VK_LAYER_KHRONOS_validation"};
         createInfo.enabledLayerCount = static_cast<uint32_t>(layers.size());
         createInfo.ppEnabledLayerNames = layers.data();
+        createInfo.flags = vk::InstanceCreateFlagBits::eEnumeratePortabilityKHR;
         m_instance = vk::createInstance(createInfo);
     }
     vk::PhysicalDevice getPhysicalDeviceOfType(vk::PhysicalDeviceType type) {
